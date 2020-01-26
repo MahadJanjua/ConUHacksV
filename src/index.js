@@ -69,7 +69,7 @@ class App extends React.Component {
 
   getPlayerStatus = async () => {
     fetch('http://localhost:8080/status', {
-      method: "post",
+      method: "get",
       mode: "no-cors",
       headers: {
         'Authorization': '2e8d7cd2f48c9a0ab93d2c45a73013de'
