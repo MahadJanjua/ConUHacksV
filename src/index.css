@@ -12,7 +12,17 @@ code {
     monospace;
 }
 
-header {
+Header {
 	position: fixed;
 	width: 100%;
+}
+
+Footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+Button {
+	margin: 0 5px;
 }

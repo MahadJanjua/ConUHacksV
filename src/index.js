@@ -76,13 +76,18 @@ class App extends React.Component {
                     </List.Item>
                 )}
             />
-            <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+            <div style={{ background: '#fff', padding: 24, minHeight: 1000 }}>
                 <Button type="primary" style={{ marginLeft: 8 }} onClick={this.handleChange}>
                     Primary Button
                 </Button>
             </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>ConUHacks V Project Submission by the Elite Four</Footer>
+        <Footer style={{ textAlign: 'center' }}>
+          <Button type="primary" shape="circle" size="large" icon="pause" style={{backgroundColor: 'black'}}/>
+          <Button type="primary" shape="circle" size="large" icon="caret-right" style={{backgroundColor: 'black'}}/>
+          <Button type="primary" shape="circle" size="large" icon="forward" style={{backgroundColor: 'black'}}/>
+          <p>ConUHacks V Project Submission by the Elite Four</p>
+        </Footer>
       </Layout>
     );
   }
