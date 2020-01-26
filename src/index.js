@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
+import { geolocated } from "react-geolocated";
 import 'antd/dist/antd.css';
 import './index.css';
 import { Button, Input, Layout, List } from 'antd';
@@ -109,6 +110,30 @@ class App extends React.Component {
                 )}
             />
         }
+        <div>
+          {
+                !this.props.isGeolocationAvailable ? (
+                <div>Your browser does not support Geolocation</div>
+            ) : !this.props.isGeolocationEnabled ? (
+                <div>Geolocation is not enabled</div>
+            ) : this.props.coords ? (
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>latitude</td>
+                            <td>{this.props.coords.latitude}</td>
+                        </tr>
+                        <tr>
+                            <td>longitude</td>
+                            <td>{this.props.coords.longitude}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            ) : (
+                <div>Getting the location data&hellip; </div>
+            )
+          }
+        </div>
         <Footer style={{ textAlign: 'center' }}>
           <Button type="primary" shape="circle" size="large" icon="fast-backward" style={{backgroundColor: 'black'}}/>
           <Button type="primary" shape="circle" size="large" icon="stop" style={{backgroundColor: 'black'}} onClick={this.stopMusic}/>
