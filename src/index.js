@@ -80,6 +80,7 @@ class App extends React.Component {
     return (
         <Layout className="layout">
         <Header style={{ zIndex: 1, padding: '10px', height: 80, textAlign: 'center'}}>
+            <span>country</span>
           <Search
               placeholder="input search text"
               style={{width: 600}}

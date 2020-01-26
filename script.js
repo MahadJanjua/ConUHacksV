@@ -1,5 +1,6 @@
 // Map and data handling Javascript
 const express = require('express');
+const mysql = require('mysql');
 var app = express();
 var bodyParser = require('body-parser');
 const axios = require('axios');
@@ -49,6 +50,26 @@ app.get('/playByID', (req, res) => {
     
 })
 
+app.get('/closeUsers', (req, res) => {
+    const lat = req.query.lat;
+    const lng = req.query.lng;
+    const myQuery = "SELECT id, (3959 * acos (cos ( radians(78.3232) )* cos( radians( "
+        + lat + " ) )* cos( radians( "
+        + lng + " ) - radians(65.3234) ) + sin ( radians(78.3232) ) * sin( radians( "
+        + lat + " ) ))) AS distance FROM Users HAVING distance < 30 ORDER BY distance;"
+    connection.query(myQuery, (err, result) => {
+        if(err) throw err;
+        console.log(result);
+    })
+})
+
 app.listen(2800, () => {
  console.log("Server running on port 2800");
 });
+
+const connection = mysql.createConnection({
+    host: 'remotemysql.com',
+    user: 'X617rBpqYP',
+    password: 'bP6mH4ujD2',
+    database: 'X617rBpqYP'
+})
