@@ -14,7 +14,7 @@ class App extends React.Component {
 
 // https://conuhacks-2020.tsp.cld.touchtunes.com/v1/songs/56356209
   handleChange = async () => {
-    fetch('http://localhost:8080/play?url=https://cdn.apps.playnetwork.com/master/f16eab6a338175b348175d820c29dc2a00d6c813133a7236dcc4998d92f65b06.ogg?Signature=EXQQk6YQFOzFI6VSzAISIJ5jD5p3fAalpypM-RxUnL1q8~x8JIF9Ozh~oZupXQ52CZKImFaO3cFZlbREbbTtkfNY7Ilw7ln0a6LSQTtFPTO7Ox7keatBL7t~Y4nLTX-H6Qsr2thNkacqjTxLorLoWzghb9aRRtnmd9OKw22Rx7EOlIpekdTpWMvGBUwOXGt94Y2Hjhw7f7L4JjASfOpDKxulwKAyntPDWP8UreWEk~E8Bco-Iz56fa-QMSBaK90i88Hl-xFufWd6sloQArO76zATjTReCx1DVFbfE-RoFT~2EWu3kprA-wpL1zHUzQnpR1l2-~3g73sVztdErgR6jg__&Key-Pair-Id=APKAJ4GOPJEICF5TREYA&Expires=1580014401', {
+    fetch('http://localhost:8080/play?url=https://cdn.apps.playnetwork.com/master/f16eab6a338175b348175d820c29dc2a00d6c813133a7236dcc4998d92f65b06.ogg?Signature=fWmsccD6XZE91WkNzrXoSzQq9poTT55hCX~ifNOiWqO~W0N9SFBJC1ucUYgosqjDiJsx3RnK-FJpY-RlEhBcePiBPGP6OiO9zrcHobM7H186tFTiJhZCG0DrtJ3d1ePARIaB74j~v33hnZAplxa0pLbKvBaj63kXNDGRWdDnR-tD~hOikvvwajkpip0sfOJkCPAEZKM9aGccgqtQjwJ3f6xiW7Cgm95frarhhxDLw2bWRlkZlrwFiR2y-OMHrbfIoAANV7GC3oaZ2Lb9n0khi96HNXYgIll2L4xqnaVNvLYrEWj08Cr9zru8sJHTGQD2chKje58zhDHwQi9qMWmNnA__&Key-Pair-Id=APKAJ4GOPJEICF5TREYA&Expires=1580013259', {
         method: "post",
         mode: "no-cors",
         headers: {
@@ -23,6 +23,42 @@ class App extends React.Component {
     })
       .then(res => res.json())
       .catch(console.log);
+  };
+
+  pauseMusic = async () => {
+    fetch('http://localhost:8080/pause', {
+      method: "post",
+      mode: "no-cors",
+      headers: {
+        'Authorization': '2e8d7cd2f48c9a0ab93d2c45a73013de'
+      }
+    })
+    .then(res => res.json())
+    .catch(console.log);
+  };
+
+  unpauseMusic = async () => {
+    fetch('http://localhost:8080/unpause', {
+      method: "post",
+      mode: "no-cors",
+      headers: {
+        'Authorization': '2e8d7cd2f48c9a0ab93d2c45a73013de'
+      }
+    })
+    .then(res => res.json())
+    .catch(console.log);
+  };
+
+  getPlayerStatus = async () => {
+    fetch('http://localhost:8080/status', {
+      method: "get",
+      mode: "no-cors",
+      headers: {
+        'Authorization': '2e8d7cd2f48c9a0ab93d2c45a73013de'
+      }
+    })
+    .then(console.log)
+    .catch(console.log);
   };
 
   search = async value => {
@@ -72,13 +108,21 @@ class App extends React.Component {
                     </List.Item>
                 )}
             />
-            <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+            <div style={{ background: '#fff', padding: 24, minHeight: '800' }}>
                 <Button type="primary" style={{ marginLeft: 8 }} onClick={this.handleChange}>
                     Primary Button
                 </Button>
+                <Button type="danger" style={{ marginLeft: 8 }} onClick={this.getPlayerStatus}>
+                    Player Status
+                </Button>
             </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>ConUHacks V Project Submission by the Elite Four</Footer>
+        <Footer style={{ textAlign: 'center' }}>
+          <Button type="primary" shape="circle" size="large" icon="pause" style={{backgroundColor: 'black'}} onClick={this.pauseMusic}/>
+          <Button type="primary" shape="circle" size="large" icon="caret-right" style={{backgroundColor: 'black'}} onClick={this.unpauseMusic}/>
+          <Button type="primary" shape="circle" size="large" icon="forward" style={{backgroundColor: 'black'}}/>
+          <p>ConUHacks V Project Submission by the Elite Four</p>
+        </Footer>
       </Layout>
     );
   }
