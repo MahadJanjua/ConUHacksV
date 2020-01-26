@@ -60,7 +60,8 @@ class App extends React.Component {
     const AuthStr = '2e8d7cd2f48c9a0ab93d2c45a73013de';
     if (value.length > 0) {
         axios.get('https://conuhacks-2020.tsp.cld.touchtunes.com/v1/songs/56356209', {
-            'headers': { 'Authorization': AuthStr }
+            'headers': { 'Authorization': AuthStr },
+            data: { query: value }
         })
         .then((response => {
             console.log(response.data);
