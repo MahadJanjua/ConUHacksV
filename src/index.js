@@ -1,11 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import { geolocated } from "react-geolocated";
 import 'antd/dist/antd.css';
 import './index.css';
 import { Button, Input, Layout, List } from 'antd';
-const { Header, Content, Footer } = Layout;
+const { Header, Footer } = Layout;
 const { Search } = Input;
 
 class App extends React.Component {
