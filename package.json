@@ -7,8 +7,10 @@
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "antd": "latest",
+    "axios": "^0.19.2",
     "express": "^4.17.1",
     "moment": "latest",
+    "node-fetch": "^2.6.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0"
@@ -33,5 +35,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "# Project By: Mahad J., Joanna L., Victor A., and Ai Di W.",
+  "main": "script.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MahadJanjua/ConUHacksV.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MahadJanjua/ConUHacksV/issues"
+  },
+  "homepage": "https://github.com/MahadJanjua/ConUHacksV#readme"
 }
