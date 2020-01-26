@@ -9,7 +9,7 @@ const { Search } = Input;
 
 class App extends React.Component {
     state = {
-        listData: [{"id":78439601,"styleName":"Latin - Pop","genreName":"Latin","duration":229,"title":"Despacito","artistName":"Luis Fonsi"},{"id":12554011,"styleName":"Pop","genreName":"Pop","duration":146,"title":"Despacito","artistName":"2CELLOS (Sulic & Hauser)"},{"id":81358212,"styleName":"Latin - Reg Mex - Ranchera","genreName":"Latin","duration":198,"title":"Despacito","artistName":"Pedro Fernandez"},{"id":74202811,"styleName":"Latin - Pop","genreName":"Latin","duration":213,"title":"Despacito","artistName":"Los Angeles Negros"},{"id":74015105,"styleName":"Latin - Regional Mexican","genreName":"Latin","duration":155,"title":"Despacito","artistName":"Pedro Infante Con La Rondalla Del Amor De Saltillo"},{"id":72374311,"styleName":"Latin - Reg Mex - Ranchera","genreName":"Latin","duration":196,"title":"Despacito","artistName":"Pedro Fernandez"},{"id":54212702,"styleName":"Latin - Regional Mexican","genreName":"Latin","duration":197,"title":"Despacito","artistName":"Pedro Fernandez"},{"id":53922201,"styleName":"Latin - Regional Mexican","genreName":"Latin","duration":197,"title":"Despacito","artistName":"Pedro Fernandez"},{"id":47215604,"styleName":"Latin - Reg Mex - Duranguense","genreName":"Latin","duration":163,"title":"Despacito","artistName":"Los Creadorez"},{"id":35408002,"styleName":"Latin - Reg Mex - Norteno","genreName":"Latin","duration":136,"title":"Despacito","artistName":"La Maquinaria Nortena"}],
+        listData: [],
     }
 
 // https://conuhacks-2020.tsp.cld.touchtunes.com/v1/songs/56356209
@@ -58,20 +58,22 @@ class App extends React.Component {
   };
 
   search = async value => {
-    const AuthStr = '2e8d7cd2f48c9a0ab93d2c45a73013de';
     if (value.length > 0) {
-        axios.get('https://conuhacks-2020.tsp.cld.touchtunes.com/v1/songs/56356209', {
-            'headers': { 'Authorization': AuthStr },
-            data: { query: value }
+        axios.get('http://localhost:2800/songs', {params: {search: value}})
+        .then(response => {
+            this.setState({listData: response.data})
         })
-        .then((response => {
-            console.log(response.data);
-        }))
         .catch((error) => {
             console.log(error);
         });
     }
   };
+
+  playByID = async (ID) => {
+      axios.get('http://localhost:2800/playByID', {params: {id: ID}})
+        .then(response => {})
+        .catch((error) => console.log(error))
+  }
 
   render() {
       
@@ -86,25 +88,28 @@ class App extends React.Component {
             />
         </Header>
         <Content style={{ padding: '0 50px' }}>
+            {(this.state.listData.data) ||
             <List
                 dataSource={this.state.listData}
                 renderItem={item => (
                     <List.Item
                         key={item.title}
-                        extra={
-                            <img
-                                src={item.picture}
-                                alt="bruh"
-                            />
-                        }
+                        // extra={
+                        //     <img
+                        //         src={item.picture}
+                        //         alt="bruh"
+                        //     />
+                        // }
                     >
                         <List.Item.Meta
                             title={item.title}
                             description={item.artistName}
                         />
+                        <Button onClick={() => {this.playByID(item.id); console.log(item.id, "IDIDIDIDIDIDID")}}>Play</Button>
                     </List.Item>
                 )}
             />
+                    }
             <div style={{ background: '#fff', padding: 24, minHeight: '800' }}>
                 <Button type="primary" style={{ marginLeft: 8 }} onClick={this.handleChange}>
                     Primary Button
