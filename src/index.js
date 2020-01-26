@@ -103,7 +103,7 @@ class App extends React.Component {
                             title={item.title}
                             description={item.artistName}
                         />
-                        <Button onClick={() => {this.playByID(item.id); console.log(item.id, "IDIDIDIDIDIDID")}}>Play</Button>
+                        <Button onClick={() => {this.playByID(item.id)}}>Play</Button>
                     </List.Item>
                 )}
             />

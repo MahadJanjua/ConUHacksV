@@ -42,7 +42,7 @@ app.get('/playByID', (req, res) => {
                 method: 'post'
             })
                 .then(() => {})
-                .catch(response => console.log(response, "here"))
+                .catch(response => {})
         })
         .catch((error) => console.log(error, "NO HERE"));
 
