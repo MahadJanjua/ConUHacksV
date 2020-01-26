@@ -13,22 +13,34 @@ class App extends React.Component {
 
 // https://conuhacks-2020.tsp.cld.touchtunes.com/v1/songs/56356209
   handleChange = async () => {
-    // fetch('http://localhost:8080/play?url="https://cdn.apps.playnetwork.com/master/65e2c70ba416c00cf710bc3dc698c38108c19ccf778aabe36098d8d1d225fb5a.ogg?Signature=BxTi7I9Xevq3BnS74XemBXUMb-jyCl8Qh7lGSaUdmR6WOINPDyIiRi196tSI7XVHU~6UPwxgONAYjUbkclNb1bRcqDgLVw~ZV8su7EjMKjaXaukrGESfTC5c-JZd29Ny4ZXmVcahJXc-E-pGjr0SPhpSt0r5~Em7WHHJs3zReHQWa5LJACRZ9u5DVT4PeMLTUcH0rqOiLj3rGAPiqOA8~B7JsAnLQcatMnQFu9FqYxznWtOcFacLskzPVOSC4jzpaI~PEu6ifGXphG9VZ4SxUuLTgVJxksyzy1pquXfFwcSnUPaVyaZ5HVudT2RCVHsxBn1uP-vXCyX3EVcW3jseHQ__&Key-Pair-Id=APKAJ4GOPJEICF5TREYA&Expires=1579984449"', {
-    //     method: "post",
-    //     mode: "no-cors",
-    //     headers: {
-    //         'Authorization': '2e8d7cd2f48c9a0ab93d2c45a73013de'
-    //     }
-    // })
-    fetch("https://conuhacks-2020.tsp.cld.touchtunes.com/v1/songs/56356209", {
-        method: "get",
+    fetch('http://localhost:8080/play?url="https://cdn.apps.playnetwork.com/master/f16eab6a338175b348175d820c29dc2a00d6c813133a7236dcc4998d92f65b06.ogg?Signature=fWmsccD6XZE91WkNzrXoSzQq9poTT55hCX~ifNOiWqO~W0N9SFBJC1ucUYgosqjDiJsx3RnK-FJpY-RlEhBcePiBPGP6OiO9zrcHobM7H186tFTiJhZCG0DrtJ3d1ePARIaB74j~v33hnZAplxa0pLbKvBaj63kXNDGRWdDnR-tD~hOikvvwajkpip0sfOJkCPAEZKM9aGccgqtQjwJ3f6xiW7Cgm95frarhhxDLw2bWRlkZlrwFiR2y-OMHrbfIoAANV7GC3oaZ2Lb9n0khi96HNXYgIll2L4xqnaVNvLYrEWj08Cr9zru8sJHTGQD2chKje58zhDHwQi9qMWmNnA__&Key-Pair-Id=APKAJ4GOPJEICF5TREYA&Expires=1580013259"', {
+        method: "post",
         mode: "no-cors",
         headers: {
             'Authorization': '2e8d7cd2f48c9a0ab93d2c45a73013de'
         }
     })
+    // fetch("https://conuhacks-2020.tsp.cld.touchtunes.com/v1/songs/56356209", {
+    //     method: "get",
+    //     mode: "no-cors",
+    //     headers: {
+    //         'Authorization': '2e8d7cd2f48c9a0ab93d2c45a73013de'
+    //     }
+    // })
       .then(res => res.json())
       .catch(console.log);
+  };
+
+  stopMusic = async () => {
+    fetch('http://localhost:8080/stop', {
+      method: "post",
+      mode: "no-cors",
+      headers: {
+        'Authorization': '2e8d7cd2f48c9a0ab93d2c45a73013de'
+      }
+    })
+    .then(res => res.json())
+    .catch(console.log);
   };
 
   pauseMusic = async () => {
@@ -122,9 +134,11 @@ class App extends React.Component {
             </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
+          <Button type="primary" shape="circle" size="large" icon="fast-backward" style={{backgroundColor: 'black'}}/>
+          <Button type="primary" shape="circle" size="large" icon="stop" style={{backgroundColor: 'black'}} onClick={this.stopMusic}/>
           <Button type="primary" shape="circle" size="large" icon="pause" style={{backgroundColor: 'black'}} onClick={this.pauseMusic}/>
           <Button type="primary" shape="circle" size="large" icon="caret-right" style={{backgroundColor: 'black'}} onClick={this.unpauseMusic}/>
-          <Button type="primary" shape="circle" size="large" icon="forward" style={{backgroundColor: 'black'}}/>
+          <Button type="primary" shape="circle" size="large" icon="fast-forward" style={{backgroundColor: 'black'}}/>
           <p>ConUHacks V Project Submission by the Elite Four</p>
         </Footer>
       </Layout>
