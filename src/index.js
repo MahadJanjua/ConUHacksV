@@ -80,14 +80,12 @@ class App extends React.Component {
     return (
         <Layout className="layout">
         <Header style={{ zIndex: 1, padding: '10px', height: 80, textAlign: 'center'}}>
-          <div className="logo" />
           <Search
               placeholder="input search text"
               style={{width: 600}}
               onSearch={value => this.search(value)}
             />
         </Header>
-        <Content style={{ padding: '0 50px' }}>
             {(this.state.listData.data) ||
             <List
                 dataSource={this.state.listData}
@@ -109,16 +107,7 @@ class App extends React.Component {
                     </List.Item>
                 )}
             />
-                    }
-            <div style={{ background: '#fff', padding: 24, minHeight: '800' }}>
-                <Button type="primary" style={{ marginLeft: 8 }} onClick={this.handleChange}>
-                    Primary Button
-                </Button>
-                <Button type="danger" style={{ marginLeft: 8 }} onClick={this.getPlayerStatus}>
-                    Player Status
-                </Button>
-            </div>
-        </Content>
+        }
         <Footer style={{ textAlign: 'center' }}>
           <Button type="primary" shape="circle" size="large" icon="fast-backward" style={{backgroundColor: 'black'}}/>
           <Button type="primary" shape="circle" size="large" icon="stop" style={{backgroundColor: 'black'}} onClick={this.stopMusic}/>
