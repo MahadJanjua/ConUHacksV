@@ -34,10 +34,6 @@ class App extends React.Component {
   stopMusic = async () => {
     fetch('http://localhost:8080/stop', {
       method: "post",
-      mode: "no-cors",
-      headers: {
-        'Authorization': '2e8d7cd2f48c9a0ab93d2c45a73013de'
-      }
     })
     .then(res => res.json())
     .catch(console.log);
@@ -46,10 +42,6 @@ class App extends React.Component {
   pauseMusic = async () => {
     fetch('http://localhost:8080/pause', {
       method: "post",
-      mode: "no-cors",
-      headers: {
-        'Authorization': '2e8d7cd2f48c9a0ab93d2c45a73013de'
-      }
     })
     .then(res => res.json())
     .catch(console.log);
@@ -58,10 +50,6 @@ class App extends React.Component {
   unpauseMusic = async () => {
     fetch('http://localhost:8080/unpause', {
       method: "post",
-      mode: "no-cors",
-      headers: {
-        'Authorization': '2e8d7cd2f48c9a0ab93d2c45a73013de'
-      }
     })
     .then(res => res.json())
     .catch(console.log);
@@ -70,10 +58,6 @@ class App extends React.Component {
   getPlayerStatus = async () => {
     fetch('http://localhost:8080/status', {
       method: "get",
-      mode: "no-cors",
-      headers: {
-        'Authorization': '2e8d7cd2f48c9a0ab93d2c45a73013de'
-      }
     })
     .then(console.log)
     .catch(console.log);
